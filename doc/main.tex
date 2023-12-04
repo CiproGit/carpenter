@@ -1,0 +1,78 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{svg} % Required for inserting svg files
+\usepackage{float} % Required for placing images in a precise location
+\usepackage[a4paper, margin=2cm]{geometry}
+
+\setlength{\parindent}{0cm} % Remove indentation of paragraph
+
+\title{Carpenter}
+\author{Federico Cipressi}
+\date{December 2023}
+
+\begin{document}
+
+\maketitle
+
+\section{Table}
+Let's consider one side of the table and along that side we must arrange the chairs.
+
+Let's call $t$ the length of the table, $c$ the length of the chair and $d$ the distance between the chairs.
+
+\begin{figure}[H]
+    \centering
+    \includesvg{images/carpenter_1.svg}
+\end{figure}
+
+Let's call $n$ the number of chairs to arrange.
+
+\begin{figure}[H]
+    \centering
+    \includesvg{images/carpenter_2.svg}
+\end{figure}
+
+$$n \cdot c + (n -1)d = t$$
+$$nc + nd - d = t$$
+$$n(c + d) = t + d$$
+$$n = \frac{t + d}{c + d}$$
+We consider $n$ as the integer division and let's call $r$ the reminder of $\frac{t + d}{c + d}$.
+
+Now let's find the coordinates, considering only the abscissas.
+
+\begin{figure}[H]
+    \centering
+    \includesvg{images/carpenter_3.svg}
+\end{figure}
+
+$O$ is the origin of axis, $T$ the center of the table, $A$ the center of the first chair and $B$ the center of the second chair.
+$$A.x = O.x + \frac{r}{2} + \frac{c}{2}$$
+$$B.x = A.x + c + d$$
+If $O.x = T.x - \frac{t}{2}$, then
+$$A.x = T.x - \frac{t}{2} + \frac{r}{2} + \frac{c}{2}$$
+that is the formula used in the program.
+
+\section{Chair}
+The position of the backrest of the chair depends on its orientation:
+
+\begin{figure}[H]
+    \centering
+    \includesvg[width=\textwidth]{images/carpenter_4.svg}
+\end{figure}
+
+Let's find the coordinates of the backrest. We consider the case of upward orientation, the other cases are analogous.
+
+\begin{figure}[H]
+    \centering
+    \includesvg{images/carpenter_5.svg}
+\end{figure}
+
+$O$ is the origin of axis, $B$ and $b$ are the position and width of the backrest respectively; $C$ the center of the chair, $w$ and $l$ are the width and length of the chair respectively.
+$$B.x = O.x$$
+$$B.y = O.y + w - b$$
+Knowing that $O.x = C.x - \frac{l}{2}$ and $O.y = C.y - \frac{w}{2}$,
+$$B.x = C.x - \frac{l}{2}$$
+$$B.y = C.y - \frac{w}{2} + w - b$$
+and we get the formula used in the program
+$$B.x = C.x - \frac{l}{2}$$
+$$B.y = C.y + \frac{w}{2} - b$$
+\end{document}
